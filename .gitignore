@@ -54,3 +54,9 @@ Thumbs.db
 *.doc
 *docx
 *csv
+
+# Графические файлы
+*.jpg
+*.png
+*.jpeg
+*.gif
