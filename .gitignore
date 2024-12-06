@@ -1,6 +1,6 @@
-git@github.com:AnHumenny/test_1.git
-
 # Папки и файлы для исключения
+
+.env
 
 # Папки виртуального окружения
 venv/
