@@ -7,6 +7,9 @@ from async_tkinter_loop import async_handler, async_mainloop
 import csv
 import tkinter.messagebox as mb
 import lists
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 class Win(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -29,11 +32,11 @@ class Win(tk.Tk):
         self.date_4 = tk.StringVar()
         self.search_info_fttx = tk.StringVar()
         self.replace_ment = tk.StringVar()
-        self.img_fttx_1 = tk.PhotoImage(file='service_asyncio/image/fttx_1.png')
-        self.img_fttx_2 = tk.PhotoImage(file='service_asyncio/image/fttx_2.png')
-        self.img_fttx_3 = tk.PhotoImage(file='service_asyncio/image/fttx_3.png')
-        self.img_fttx_4 = tk.PhotoImage(file='service_asyncio/image/fttx_4.png')
-        self.img_fttx_5 = tk.PhotoImage(file='service_asyncio/image/fttx_5.png')
+        self.img_fttx_1 = tk.PhotoImage(file=f'{os.getcwd()}/image/fttx_1.png')
+        self.img_fttx_2 = tk.PhotoImage(file=f'{os.getcwd()}/image/fttx_2.png')
+        self.img_fttx_3 = tk.PhotoImage(file=f'{os.getcwd()}/image/fttx_3.png')
+        self.img_fttx_4 = tk.PhotoImage(file=f'{os.getcwd()}/image/fttx_4.png')
+        self.img_fttx_5 = tk.PhotoImage(file=f'{os.getcwd()}/image/fttx_5.png')
         self.frame_1 = Frame(self, width=200, height=800)
         self.frame_1.grid(row=0, column=0, rowspan=5, pady=50, sticky=N)
         self.frame_search = Frame(self, width=1020, height=6)
@@ -284,10 +287,7 @@ class Win(tk.Tk):
 
         else:
 
-            label_mkn_16 = tk.Label(self.frame_2, width=1020, text='МКН-16, МКН-17,МКН-19 --  ЖЭУ-25 | Телефон: 33-73-52,\n'
-                                                               'кластер Аэродром | ЖЭУ-25 | Телефон: 33-73-52'
-                                                               '\nНовополесская 2, Новополесская 4 | ЖЭУ-8 | '
-                                                               'Телефон: 21-72-10')
+            label_mkn_16 = tk.Label(self.frame_2, width=1020, text=os.getenv('zhey_contact'))
             label_mkn_16.pack()
             my_list = tk.Text(self.frame_2, width=138, height=37, wrap=WORD)
             my_list.insert(tk.END, f' Город: {res.sity:14} \n '
@@ -506,7 +506,8 @@ class Win(tk.Tk):
         my_date_1.grid(row=0, column=0, padx=10, pady=5)
         my_date_2 = tk.Entry(frame_3, width=10, textvariable=self.date_2)
         my_date_2.grid(row=1, column=0, padx=10, pady=5)
-        button_send_date = tk.Button(frame_3, text='Сформировать отчёт fttx\nYYYY-MM-DD', command=lambda: self.csv_export())
+        button_send_date = tk.Button(frame_3, text='Сформировать отчёт fttx\nYYYY-MM-DD',
+                                     command=lambda: self.csv_export())
         button_send_date.grid(row=2, column=0, padx=70, pady=5)
         button_send_support = tk.Button(frame_3, text='Сформировать отчёт\nзамена оборудования',
                                         command=lambda: self.support_csv_export())
@@ -540,7 +541,8 @@ class Win(tk.Tk):
         my_update_baza = tk.Entry(self.frame_2, width=110, textvariable=self.update_baza)
         my_update_baza.delete('0', tk.END)
         my_update_baza.pack(pady=5)
-        button_send_update_baza = tk.Button(self.frame_2, text='Обновить запись', command=lambda: self.update_info_fttx())
+        button_send_update_baza = tk.Button(self.frame_2, text='Обновить запись',
+                                            command=lambda: self.update_info_fttx())
         button_send_update_baza.pack(pady=5)
 
 if __name__ == "__main__":
