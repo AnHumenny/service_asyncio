@@ -1,19 +1,20 @@
 import datetime
 import tkinter as tk
+
+import lists
 from repository import Repo
 from tkinter import *
 from tkinter import ttk
 from async_tkinter_loop import async_handler, async_mainloop
 import csv
 import tkinter.messagebox as mb
-import lists
 import os
 from dotenv import load_dotenv
-load_dotenv()
 
 class Win(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
+        load_dotenv()
         self.title('FTTX/WTTX Гомель')
         self.geometry('1330x730')
         self.resizable(False, False)
@@ -287,7 +288,7 @@ class Win(tk.Tk):
 
         else:
 
-            label_mkn_16 = tk.Label(self.frame_2, width=1020, text=os.getenv('zhey_contact'))
+            label_mkn_16 = tk.Label(self.frame_2, width=1020, text=lists.detail)
             label_mkn_16.pack()
             my_list = tk.Text(self.frame_2, width=138, height=37, wrap=WORD)
             my_list.insert(tk.END, f' Город: {res.sity:14} \n '
@@ -313,13 +314,13 @@ class Win(tk.Tk):
             widget.destroy()
         name_claster = tk.Label(self.frame_2, text="Список кластеров")
         name_claster.grid(row=0, column=0, padx=220)
-        self.list_claster = ttk.Combobox(self.frame_2, width=50, values=lists.l_claster, state="readonly")
+        self.list_claster = ttk.Combobox(self.frame_2, width=50, values=lists.claster, state="readonly")
         self.list_claster.grid(row=1, column=0)
         search_claster = Button(self.frame_2, text="Поиск по кластерам", command=lambda: self.search_claster())
         search_claster.grid(row=2, column=0)
         name_street = tk.Label(self.frame_2, text="Список улиц")
         name_street.grid(row=0, column=1, padx=220)
-        self.list_street = ttk.Combobox(self.frame_2, width=50, values=lists.l_street, state="readonly")
+        self.list_street = ttk.Combobox(self.frame_2, width=50, values=lists.street, state="readonly")
         self.list_street.grid(row=1, column=1)
         search_street = Button(self.frame_2, text="Поиск по улицам", command=lambda: self.result_street())
         search_street.grid(row=2, column=1)
@@ -332,7 +333,7 @@ class Win(tk.Tk):
         result = await Repo.select_claster(claster)
         for widget in self.frame_2.winfo_children():
             widget.destroy()
-        my_label = tk.Label(self.frame_2, text=lists.detail_info)
+        my_label = tk.Label(self.frame_2, text=lists.detail)
         my_label.pack()
         if result is None:
             my_search_bs_label = tk.Label(self.frame_2, width=137, text=str(' '))
@@ -355,7 +356,7 @@ class Win(tk.Tk):
         result = await Repo.select_street(street)
         for widget in self.frame_2.winfo_children():
             widget.destroy()
-        my_label = tk.Label(self.frame_2, text=lists.detail_info)
+        my_label = tk.Label(self.frame_2, text=lists.detail)
         my_label.pack()
         if result is None:
             my_search_bs_label = tk.Label(self.frame_2, width=137, text=str(' '))
