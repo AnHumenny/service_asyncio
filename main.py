@@ -133,8 +133,7 @@ class Win(tk.Tk):
         my_list = tk.Text(self.frame_2, width=138, height=36, wrap=WORD, yscrollcommand=scrollbar.set)
         for row in res:
             my_list.insert(tk.END, f'{row.sity:14} | {row.street:20} | {row.namber:10} | {row.askue:10} \n')
-            my_list.insert(tk.END, str('-') * 130)
-            my_list.insert(tk.END, str('\n'))
+            my_list.insert(tk.END, str('-') * 130 + str('\n'))
         my_list.pack(side=tk.LEFT, fill=tk.BOTH)
         scrollbar.config(command=my_list.yview)
 
@@ -153,8 +152,7 @@ class Win(tk.Tk):
         for row in res:
             my_list.insert(tk.END, f'{row.street:14} | {row.home:20} |'
                                    f' {row.entrance:10} | {row.ind:10}| {row.stand:10} \n')
-            my_list.insert(tk.END, str('-') * 80)
-            my_list.insert(tk.END, str('\n'))
+            my_list.insert(tk.END, str('-') * 80 + str('\n'))
         my_list.pack(side=tk.LEFT, fill=tk.BOTH)
         scrollbar.config(command=my_list.yview)
 
@@ -171,8 +169,7 @@ class Win(tk.Tk):
             my_list.insert(tk.END, f'{row.sity:14} | {row.bs:7} |'
                                    f' {row.street:15} | {row.namber:10}\n')
             my_list.insert(tk.END, f'{row.comment}\n')
-            my_list.insert(tk.END, str('-') * 80)
-            my_list.insert(tk.END, str('\n'))
+            my_list.insert(tk.END, str('-') * 80 + str('\n'))
         my_list.pack(side=tk.LEFT, fill=tk.BOTH)
         scrollbar.config(command=my_list.yview)
 
@@ -188,8 +185,7 @@ class Win(tk.Tk):
         for row in res:
             my_list.insert(tk.END, f'{row.tip:14} \n')
             my_list.insert(tk.END, f' {row.comment} \n')
-            my_list.insert(tk.END, str('-') * 130)
-            my_list.insert(tk.END, str('\n'))
+            my_list.insert(tk.END, str('-') * 130 + str('\n'))
         my_list.pack(side=tk.LEFT, fill=tk.BOTH)
         scrollbar.config(command=my_list.yview)
 
@@ -210,8 +206,7 @@ class Win(tk.Tk):
             my_list.insert(tk.END, f'{row.ip:14} | {row.number:6} |  {row.tip:10}  \n')
             my_list.insert(tk.END, f' {row.region:14} | {row.address} \n')
             my_list.insert(tk.END, f' {row.comment} \n')
-            my_list.insert(tk.END, str('-') * 130)
-            my_list.insert(tk.END, str('\n'))
+            my_list.insert(tk.END, str('-') * 130 + str('\n'))
         my_list.pack(side=tk.LEFT, fill=tk.BOTH)
         scrollbar.config(command=my_list.yview)
 
@@ -267,8 +262,7 @@ class Win(tk.Tk):
             my_list = tk.Text(self.frame_2, width=138, height=28, wrap=WORD, yscrollcommand=scrollbar.set)
             for row in bs_address:
                 my_list.insert(tk.END, f'{row.number:6} \n {row.address:50} \n')
-                my_list.insert(tk.END, str('-') * 130)
-                my_list.insert(tk.END, str('\n'))
+                my_list.insert(tk.END, str('-') * 130 + str('\n'))
             my_list.pack(side=tk.LEFT, fill=tk.BOTH)
             scrollbar.config(command=my_list.yview)
 
@@ -297,8 +291,7 @@ class Win(tk.Tk):
                                    f'Номер дома: {res.namber:6} \n '
                                    f'Комментарий: {res.comment} \n')
 
-        my_list.insert(tk.END, str('-') * 130)
-        my_list.insert(tk.END, str('\n'))
+        my_list.insert(tk.END, str('-') * 130 + str('\n'))
         my_list.pack(side=tk.LEFT, fill=tk.BOTH)
 
     #некорректный ввод быстрый поиск
@@ -312,6 +305,8 @@ class Win(tk.Tk):
     async def detail_fttx(self):
         for widget in self.frame_2.winfo_children():
             widget.destroy()
+        clas = os.getenv("claster")
+        print(clas)
         name_claster = tk.Label(self.frame_2, text="Список кластеров")
         name_claster.grid(row=0, column=0, padx=220)
         self.list_claster = ttk.Combobox(self.frame_2, width=50, values=lists.claster, state="readonly")
@@ -345,8 +340,7 @@ class Win(tk.Tk):
             for row in result:
                 my_list.insert(tk.END, f'{row.id:4} | {row.sity:10} | {row.claster:8} | {row.street:15} | '
                                f' {row.namber:6} | {row.comment} \n')
-                my_list.insert(tk.END, str('-') * 130)
-                my_list.insert(tk.END, str('\n'))
+                my_list.insert(tk.END, str('-') * 130 + str('\n'))
             scrollbar.config(command=my_list.yview)
             my_list.pack(side=tk.LEFT, fill=tk.BOTH)
 
@@ -368,8 +362,7 @@ class Win(tk.Tk):
             for row in result:
                 my_list.insert(tk.END, f'{row.id:4} | {row.sity:10} | {row.claster:8} | {row.street:15} | '
                                        f' {row.namber:6} | {row.comment} \n')
-                my_list.insert(tk.END, str('-') * 130)
-                my_list.insert(tk.END, str('\n'))
+                my_list.insert(tk.END, str('-') * 130 + str('\n'))
             my_list.pack(side=tk.LEFT, fill=tk.BOTH)
             scrollbar.config(command=my_list.yview)
             my_list.pack(side=tk.LEFT, fill=tk.BOTH)
